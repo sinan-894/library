@@ -1,4 +1,13 @@
-myLibrary = [];
+d = {
+    name:'hi',
+    author:'me',
+    publishedYear:2024,
+    pages:69,
+
+}
+
+
+myLibrary = [d];
 
 
 function Book(name,author,publishedYear,pages){
@@ -18,39 +27,74 @@ function addBookToLibrary(name,author,publishedYear) {
     console.log(myLibrary);
 }
 
-function createInfoElements(){
-    const bookName =  document.createElement('section').classList.add('book-name');
-    const bookAuthor =  document.createElement('section').classList.add('book-author');
-    const bookYear =  document.createElement('section').classList.add('book-year');
-    const bookPages =  document.createElement('section').classList.add('book-pages');
+function createInfoElementsWithTextContent(name,author,publishedYear,pages){
+    console.log(name)
+    const bookName =  document.createElement('section');
+
+    bookName.textContent = name
+    const bookAuthor =  document.createElement('section');
+    bookAuthor.textContent = author
+    const bookYear =  document.createElement('section');
+    bookYear.textContent = publishedYear
+    const bookPages =  document.createElement('section');
+    bookPages.textContent = pages;
 
     return [bookName,bookAuthor,bookYear,bookPages]
+}
+
+function createStatusButton(book){
+    const bookStatus =  document.createElement('button');
+    bookStatus.classList.add('book-status');
+    bookStatus.textContent ='Not Finished';
+
+    bookStatus.addEventListener('click',()=>{
+        if(book.isFinished){
+            bookStatus.textContent ='Not Finished';
+            bookStatus.classList.remove('finish');
+            book.isFinished = false;
+        }
+        else{
+            bookStatus.textContent ='Finished';
+            bookStatus.classList.add('finish');
+            book.isFinished = true;
+        }
+    })
+
+    return bookStatus;
+
+
 }
 
 
 function displayBookInLibrary(){
     const bookCollections =  document.querySelector('.books');
     myLibrary.map((book)=>{
-        const bookCard = document.createElement('div').classList.add('book-card');
+        console.log(book.name)
+        const bookCard = document.createElement('div');
+        bookCard.classList.add('book-card')
         
-        const bookName =  document.createElement('section').classList.add('book-name');
-        bookName.textContent = book.name
-        bookCard.appendChild(bookName);
-        const bookAuthor =  document.createElement('section').classList.add('book-author');
-        bookAuthor.textContent = book.author
-        bookCard.appendChild(bookAuthor);
-        const bookYear =  document.createElement('section').classList.add('book-year');
-        bookYear.textContent = book.publishedYear
-        bookCard.appendChild(bookYear);
-        const bookPages =  document.createElement('section').classList.add('book-pages');
-        bookPages.textContent = book.pages
-        bookCard.appendChild(bookPages);
-        const bookStatus =  document.createElement('button').classList.add('book-status');
+        const arrayOfInfoElements = createInfoElementsWithTextContent(book.name,book.author,book.publishedYear,book.pages);
+        arrayOfInfoElements.map((element)=>{
+            element.classList.add('book-info')
+            bookCard.appendChild(element);
+        })
+        
+        const bookStatus =  createStatusButton(book);
         bookCard.appendChild(bookStatus);
-        const bookRemove =  document.createElement('button').classList.add('book-remove');
+
+        const bookRemove =  document.createElement('button');
+        bookRemove.textContent = 'Remove Book'
+        bookRemove.classList.add('book-remove')
+        bookRemove.addEventListener('click',()=>{
+            bookCollections.removeChild(bookCard)
+        })
+        
         bookCard.appendChild(bookRemove);
+        
+        bookCollections.appendChild(bookCard)
 
     });
+
 }
 
 
