@@ -21,8 +21,8 @@ function Book(name,author,publishedYear,pages){
     };
 }
 
-function addBookToLibrary(name,author,publishedYear) {
-    bookObject = new Book(name,author,publishedYear);
+function addBookToLibrary(name,author,publishedYear,pages) {
+    bookObject = new Book(name,author,publishedYear,pages);
     myLibrary.push(bookObject);
     console.log(myLibrary);
 }
@@ -98,22 +98,21 @@ function displayBookInLibrary(){
 }
 const bookAdd = document.querySelector('.add-books');
 const dialogBox = document.querySelector('dialog');
-// add.addEventListener('click',()=>dd.showModal())
+bookAdd.addEventListener('click',()=>dialogBox.showModal())
 
 displayBookInLibrary()
 
 
 
-// const submitFormInput = document.querySelector('#submit');
-// console.log(submitFormInput)
+const submitFormInput = document.querySelector('#submit');
+console.log(submitFormInput)
 
-// submitFormInput.addEventListener('click',(event)=>{
-//     console.log('jjjjjjaaaaaaa')
-//     event.preventDefault();
-//     const bookFormInput = document.querySelector('#name').value
-//     const authorFormInput = document.querySelector('#author').value
-//     const yearFormInput = document.querySelector('#year').value
-//     console.log('jjjjjj')
-//     addBookToLibrary(bookFormInput,authorFormInput,yearFormInput)
-// })
+submitFormInput.addEventListener('click',(event)=>{
+    event.preventDefault();
+    const bookFormInput = document.querySelector('#name').value
+    const authorFormInput = document.querySelector('#author').value
+    const yearFormInput = document.querySelector('#year').value
+    const pageFormInput = document.querySelector('#pages').value
+    addBookToLibrary(bookFormInput,authorFormInput,yearFormInput,pageFormInput)
+})
 
