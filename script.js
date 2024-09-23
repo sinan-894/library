@@ -7,7 +7,7 @@ d = {
 }
 
 
-myLibrary = [d];
+const myLibrary = [d];
 
 
 function Book(name,author,publishedYear,pages){
@@ -81,20 +81,12 @@ function createBookCardElement(book){
     const bookStatus =  createStatusButton(book);
     bookCard.appendChild(bookStatus);
 
-    const bookRemove =  document.createElement('button');
-    bookRemove.classList.add('book-remove')
-    bookRemove.textContent = 'Remove Book'
-    bookRemove.addEventListener('click',()=>{
-        bookCollections.removeChild(bookCard)
-    })
-    
-    bookCard.appendChild(bookRemove);
+    removeBookCard(bookCard);
     
     return bookCard
 }
 
 function displayBookInLibrary(book){
-    const library = document.querySelector('.books');
     const bookCardElement = createBookCardElement(book);
     library.appendChild(bookCardElement)
 }
@@ -102,6 +94,22 @@ function displayExistingBookInLibrary(){
     myLibrary.map((book)=>displayBookInLibrary(book))
 }
 
+function removeBookCard(bookCard,book){
+    const bookRemove =  document.createElement('button');
+    bookRemove.classList.add('book-remove')
+    bookRemove.textContent = 'Remove Book'
+    bookRemove.addEventListener('click',()=>{
+        library.removeChild(bookCard)
+        let i = myLibrary.indexOf(book)
+        console.log(myLibrary);
+        myLibrary.splice(i,1)
+        console.log(myLibrary);
+    })
+    bookCard.appendChild(bookRemove);
+    
+}
+
+const library = document.querySelector('.books');
 const bookAdd = document.querySelector('.add-books');
 const dialogBox = document.querySelector('dialog');
 bookAdd.addEventListener('click',()=>dialogBox.showModal())
