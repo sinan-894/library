@@ -22,8 +22,9 @@ function Book(name,author,publishedYear,pages){
 }
 
 function addBookToLibrary(name,author,publishedYear,pages) {
-    bookObject = new Book(name,author,publishedYear,pages);
+    const bookObject = new Book(name,author,publishedYear,pages);
     myLibrary.push(bookObject);
+    displayBookInLibrary(bookObject)
     console.log(myLibrary);
 }
 
@@ -66,41 +67,46 @@ function createStatusButton(book){
 }
 
 
-function displayBookInLibrary(){
-    const bookCollections =  document.querySelector('.books');
-    myLibrary.map((book)=>{
-        console.log(book.name)
-        const bookCard = document.createElement('div');
-        bookCard.classList.add('book-card')
-        
-        const arrayOfInfoElements = createInfoElementsWithTextContent(book.name,book.author,book.publishedYear,book.pages);
-        arrayOfInfoElements.map((element)=>{
-            element.classList.add('book-info')
-            bookCard.appendChild(element);
-        })
-        
-        const bookStatus =  createStatusButton(book);
-        bookCard.appendChild(bookStatus);
+function createBookCardElement(book){
+    console.log(book.name)
+    const bookCard = document.createElement('div');
+    bookCard.classList.add('book-card')
+    
+    const arrayOfInfoElements = createInfoElementsWithTextContent(book.name,book.author,book.publishedYear,book.pages);
+    arrayOfInfoElements.map((element)=>{
+        element.classList.add('book-info')
+        bookCard.appendChild(element);
+    })
+    
+    const bookStatus =  createStatusButton(book);
+    bookCard.appendChild(bookStatus);
 
-        const bookRemove =  document.createElement('button');
-        bookRemove.classList.add('book-remove')
-        bookRemove.textContent = 'Remove Book'
-        bookRemove.addEventListener('click',()=>{
-            bookCollections.removeChild(bookCard)
-        })
-        
-        bookCard.appendChild(bookRemove);
-        
-        bookCollections.appendChild(bookCard)
-
-    });
-
+    const bookRemove =  document.createElement('button');
+    bookRemove.classList.add('book-remove')
+    bookRemove.textContent = 'Remove Book'
+    bookRemove.addEventListener('click',()=>{
+        bookCollections.removeChild(bookCard)
+    })
+    
+    bookCard.appendChild(bookRemove);
+    
+    return bookCard
 }
+
+function displayBookInLibrary(book){
+    const library = document.querySelector('.books');
+    const bookCardElement = createBookCardElement(book);
+    library.appendChild(bookCardElement)
+}
+function displayExistingBookInLibrary(){
+    myLibrary.map((book)=>displayBookInLibrary(book))
+}
+
 const bookAdd = document.querySelector('.add-books');
 const dialogBox = document.querySelector('dialog');
 bookAdd.addEventListener('click',()=>dialogBox.showModal())
 
-displayBookInLibrary()
+displayExistingBookInLibrary()
 
 
 
@@ -114,5 +120,6 @@ submitFormInput.addEventListener('click',(event)=>{
     const yearFormInput = document.querySelector('#year').value
     const pageFormInput = document.querySelector('#pages').value
     addBookToLibrary(bookFormInput,authorFormInput,yearFormInput,pageFormInput)
+    dialogBox.close()
 })
 
