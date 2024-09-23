@@ -83,8 +83,8 @@ function displayBookInLibrary(){
         bookCard.appendChild(bookStatus);
 
         const bookRemove =  document.createElement('button');
-        bookRemove.textContent = 'Remove Book'
         bookRemove.classList.add('book-remove')
+        bookRemove.textContent = 'Remove Book'
         bookRemove.addEventListener('click',()=>{
             bookCollections.removeChild(bookCard)
         })
@@ -96,6 +96,11 @@ function displayBookInLibrary(){
     });
 
 }
+const bookAdd = document.querySelector('.add-books');
+const dialogBox = document.querySelector('dialog');
+// add.addEventListener('click',()=>dd.showModal())
+
+displayBookInLibrary()
 
 
 

@@ -8,15 +8,6 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <!-- <form action="">
-        <label for="name">book name</label>
-        <input type="text" id="name" name="name">
-        <label for="author">author</label>
-        <input type="text" id="author" name="author">
-        <label for="year">year</label>
-        <input type="text" id="year" name="year">
-        <button id="submit" name="submit"> Add</button>
-    </form> -->
     <div class="heading">
         Library
     </div>
@@ -31,9 +22,24 @@
         </div>
     </div>
     <div class="add-books">
-        <button onclick=displayBookInLibrary()>add book</button>
+        <button >add book</button>
     </div>
-    <div class="new-book-form"></div>
+    <div class="new-book-form">
+        <dialog>
+            <p>Greetings, one and all!</p>
+            <form action="">
+                <label for="name">book name</label>
+                <input type="text" id="name" name="name">
+                <label for="author">author</label>
+                <input type="text" id="author" name="author">
+                <label for="year">year</label>
+                <input type="text" id="year" name="year">
+                <label for="pages">pages</label>
+                <input type="text" id="pages" name="pages">
+                <button id="submit" name="submit"> Add</button>
+            </form>
+          </dialog>
+    </div>
     
 </body>
 </html>
