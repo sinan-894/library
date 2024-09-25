@@ -1,13 +1,6 @@
-d = {
-    name:'hi',
-    author:'me',
-    publishedYear:2024,
-    pages:69,
-
-}
 
 
-const myLibrary = [d];
+const myLibrary = [];
 
 
 function Book(name,author,publishedYear,pages){
