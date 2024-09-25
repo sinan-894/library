@@ -111,7 +111,7 @@ form{
 
 
 
-input[type='text']{
+input[type='text'],input[type='number']{
     background-color: #fbbf24;
     border: 2px solid blue;
     border-radius: 10px;
