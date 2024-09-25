@@ -1,0 +1,121 @@
+
+:root{
+    --body-color:#dcfce7;
+    --color-green:#16a34a;
+    --color-red:#dc2626;
+    --color-neutral:#0ea5e9;
+}
+
+body{
+    background-color: var(--body-color);    
+    margin: 0px;
+    padding: 0px;
+}
+
+.heading{
+    background-color:#0c0a09;
+    color:#dcfce7;
+    height: 100px;
+    font-size:60px ;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.add-books{
+    margin: 30px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.add-books button{
+    width: 100px;
+    background-color: var(--body-color);
+    border:0px
+}
+
+.books{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    margin: 0px 50px;
+    gap: 50px;
+    --cards-bg-color:#3b0764;
+    --cards-color:#f3f4f6;
+    --cards-font-size: 1.2rem;
+    --card-font-weight:700;
+    
+}
+
+
+.book-card{
+    background-color:var(--cards-bg-color);
+    color: var(--cards-color);
+    display: grid;
+    justify-items: center;
+    border-radius: 12px;
+    padding:20px ;
+    gap: 10px;
+    font-size: var(--cards-font-size);
+    font-weight: var(--card-font-weight);
+}
+
+.book-status,.book-remove{
+    background-color:var(--color-red);
+    color: var(--cards-color);
+    font-size: 1rem;
+    font-weight: var(--card-font-weight);
+
+    width: 100%;
+    border: 0px;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.finish{
+    background-color:var(--color-green);
+}
+
+
+.book-remove{
+    background-color: var(--color-neutral);
+}
+
+
+
+dialog{
+    background-color: #fbbf24;
+}
+
+form{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap:10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+#submit,#cancel{
+    grid-column: 1/span 2;
+    margin-top: 10px;
+    background-color:var(--color-red);
+    padding: 5px;
+    border-radius:20px ;
+    border: 0px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+#submit{
+    background-color:var(--color-green);
+}
+
+
+
+
+input[type='text']{
+    background-color: #fbbf24;
+    border: 2px solid blue;
+    border-radius: 10px;
+    outline: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
