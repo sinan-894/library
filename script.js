@@ -3,22 +3,52 @@
 const myLibrary = [];
 
 
-function Book(name,author,publishedYear,pages){
-    this.name = name;
-    this.author = author;
-    this.publishedYear = publishedYear;
-    this.pages = pages
-    this.isFinished = false
-    this.displayDetails = ()=>{
+class Book{
+    
+    constructor(name,author,publishedYear,pages){
+        this.name = name;
+        this.author = author;
+        this.publishedYear = publishedYear;
+        this.pages = pages
+        this.isFinished = false
+    }
+    displayDetails(){
         console.log(`${this.name} written by ${author} published on ${this.publishedYear}`)
-    };
+    }
 }
+
+
+
 
 function addBookToLibrary(name,author,publishedYear,pages) {
     const bookObject = new Book(name,author,publishedYear,pages);
     myLibrary.push(bookObject);
     displayBookInLibrary(bookObject)
     console.log(myLibrary);
+}
+
+function displayBookInLibrary(book){
+    const bookCardElement = createBookCardElement(book);
+    library.appendChild(bookCardElement)
+}
+
+function createBookCardElement(book){
+    console.log(book.name)
+    const bookCard = document.createElement('div');
+    bookCard.classList.add('book-card')
+    
+    const arrayOfInfoElements = createInfoElementsWithTextContent(book.name,book.author,book.publishedYear,book.pages);
+    arrayOfInfoElements.map((element)=>{
+        element.classList.add('book-info')
+        bookCard.appendChild(element);
+    })
+    
+    const bookStatus =  createStatusButton(book);
+    bookCard.appendChild(bookStatus);
+
+    createRemoveBookCardButton(bookCard);
+    
+    return bookCard
 }
 
 function createInfoElementsWithTextContent(name,author,publishedYear,pages){
@@ -60,34 +90,7 @@ function createStatusButton(book){
 }
 
 
-function createBookCardElement(book){
-    console.log(book.name)
-    const bookCard = document.createElement('div');
-    bookCard.classList.add('book-card')
-    
-    const arrayOfInfoElements = createInfoElementsWithTextContent(book.name,book.author,book.publishedYear,book.pages);
-    arrayOfInfoElements.map((element)=>{
-        element.classList.add('book-info')
-        bookCard.appendChild(element);
-    })
-    
-    const bookStatus =  createStatusButton(book);
-    bookCard.appendChild(bookStatus);
-
-    removeBookCard(bookCard);
-    
-    return bookCard
-}
-
-function displayBookInLibrary(book){
-    const bookCardElement = createBookCardElement(book);
-    library.appendChild(bookCardElement)
-}
-function displayExistingBookInLibrary(){
-    myLibrary.map((book)=>displayBookInLibrary(book))
-}
-
-function removeBookCard(bookCard,book){
+function createRemoveBookCardButton(bookCard,book){
     const bookRemove =  document.createElement('button');
     bookRemove.classList.add('book-remove')
     bookRemove.textContent = 'Remove Book'
@@ -102,25 +105,33 @@ function removeBookCard(bookCard,book){
     
 }
 
+
+function displayExistingBookInLibrary(){
+    myLibrary.map((book)=>displayBookInLibrary(book))
+}
+
+
+function createBookAddForm(){
+    const bookAdd = document.querySelector('.add-books');
+    const dialogBox = document.querySelector('dialog');
+    bookAdd.addEventListener('click',()=>dialogBox.showModal())
+    const submitFormInput = document.querySelector('#submit');
+    console.log(submitFormInput)
+    
+    submitFormInput.addEventListener('click',(event)=>{
+        event.preventDefault();
+        const bookFormInput = document.querySelector('#name').value
+        const authorFormInput = document.querySelector('#author').value
+        const yearFormInput = document.querySelector('#year').value
+        const pageFormInput = document.querySelector('#pages').value
+        addBookToLibrary(bookFormInput,authorFormInput,yearFormInput,pageFormInput)
+        dialogBox.close()
+    })
+}
+
+
 const library = document.querySelector('.books');
-const bookAdd = document.querySelector('.add-books');
-const dialogBox = document.querySelector('dialog');
-bookAdd.addEventListener('click',()=>dialogBox.showModal())
-
 displayExistingBookInLibrary()
+createBookAddForm()
 
-
-
-const submitFormInput = document.querySelector('#submit');
-console.log(submitFormInput)
-
-submitFormInput.addEventListener('click',(event)=>{
-    event.preventDefault();
-    const bookFormInput = document.querySelector('#name').value
-    const authorFormInput = document.querySelector('#author').value
-    const yearFormInput = document.querySelector('#year').value
-    const pageFormInput = document.querySelector('#pages').value
-    addBookToLibrary(bookFormInput,authorFormInput,yearFormInput,pageFormInput)
-    dialogBox.close()
-})
 
