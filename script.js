@@ -117,6 +117,10 @@ function createBookAddForm(){
     bookAdd.addEventListener('click',()=>dialogBox.showModal())
     const submitFormInput = document.querySelector('#submit');
     const cancelFormButton = document.querySelector('#cancel')
+    const bookFormInput = document.querySelector('#name')
+    const authorFormInput = document.querySelector('#author')
+    const yearFormInput = document.querySelector('#year')
+    const pageFormInput = document.querySelector('#pages')
     console.log(submitFormInput)
     
     submitFormInput.addEventListener('click',(event)=>{
@@ -125,11 +129,12 @@ function createBookAddForm(){
             console.log('invalid')
             return ;
         }
-        const bookFormInput = document.querySelector('#name').value
-        const authorFormInput = document.querySelector('#author').value
-        const yearFormInput = document.querySelector('#year').value
-        const pageFormInput = document.querySelector('#pages').value
-        addBookToLibrary(bookFormInput,authorFormInput,yearFormInput,pageFormInput)
+        
+        addBookToLibrary(bookFormInput.value,authorFormInput.value,yearFormInput.value,pageFormInput.value)
+        bookFormInput.value = "";
+        authorFormInput.value = "";
+        yearFormInput.value = "";
+        pageFormInput.value = "";
         dialogBox.close()
     })
 
