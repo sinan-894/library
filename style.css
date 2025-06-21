@@ -119,3 +119,12 @@ input[type='text'],input[type='number']{
     font-size: 1.2rem;
     font-weight: 600;
 }
+
+
+form span{
+    font-size: 0.9em;
+    color: #dc2626;
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+}
