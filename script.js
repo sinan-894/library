@@ -120,6 +120,10 @@ function createBookAddForm(){
     
     submitFormInput.addEventListener('click',(event)=>{
         event.preventDefault();
+        if (!isFormValid()){
+            console.log('invalid')
+            return ;
+        }
         const bookFormInput = document.querySelector('#name').value
         const authorFormInput = document.querySelector('#author').value
         const yearFormInput = document.querySelector('#year').value
@@ -128,6 +132,29 @@ function createBookAddForm(){
         dialogBox.close()
     })
 }
+
+function isFormValid(){
+    const bookFormInput = document.querySelector('#name')
+    const authorFormInput = document.querySelector('#author')
+    const yearFormInput = document.querySelector('#year')
+    const pageFormInput = document.querySelector('#pages')
+    let validFlag  = true;
+
+    function errorMessage(name,message){
+        const span = document.querySelector(`.${name}-span`)
+        span.textContent = message;
+        if (message!='') validFlag = false
+    }
+
+    
+    (bookFormInput.validity.valueMissing)? errorMessage('name','enter a book name'):errorMessage('name','');
+    (authorFormInput.validity.valueMissing)? errorMessage('author','enter a authors name'):errorMessage('author','');
+    (yearFormInput.validity.valueMissing)? errorMessage('year','give a year'):errorMessage('year','');
+    (pageFormInput.validity.valueMissing)? errorMessage('pages','give number of page'):errorMessage('pages','');
+
+    return validFlag
+}
+
 
 
 const library = document.querySelector('.books');

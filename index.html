@@ -20,14 +20,20 @@
             <p>Greetings, one and all!</p>
             <form action="">
                 <label for="name">book name</label>
-                <input type="text" id="name" name="name">
+                <div>
+                    <input type="text" id="name" name="name" required>
+                    <span class="name-span"></span>
+                </div>
                 <label for="author">author</label>
-                <input type="text" id="author" name="author">
+                <input type="text" id="author" name="author" required>
+                <span class="author-span"></span>
                 <label for="year">year</label>
-                <input type="number" id="year" name="year">
+                <input type="number" id="year" name="year" required>
+                <span class="year-span"></span>
                 <label for="pages">pages</label>
-                <input type="number" id="pages" name="pages">
-                <button id="submit" name="submit"> Add</button>
+                <input type="number" id="pages" name="pages" required>
+                <span class="pages-span"></span>
+                <buttons id="submit" name="submit"> Add</button>
                 <button id="cancel" name="submit"> cancel</button>
             </form>
           </dialog>
