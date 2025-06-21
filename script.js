@@ -116,6 +116,7 @@ function createBookAddForm(){
     const dialogBox = document.querySelector('dialog');
     bookAdd.addEventListener('click',()=>dialogBox.showModal())
     const submitFormInput = document.querySelector('#submit');
+    const cancelFormButton = document.querySelector('#cancel')
     console.log(submitFormInput)
     
     submitFormInput.addEventListener('click',(event)=>{
@@ -131,6 +132,8 @@ function createBookAddForm(){
         addBookToLibrary(bookFormInput,authorFormInput,yearFormInput,pageFormInput)
         dialogBox.close()
     })
+
+    cancelFormButton.addEventListener('click',()=>dialogBox.close())
 }
 
 function isFormValid(){
